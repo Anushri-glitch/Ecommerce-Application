@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="orderTabl")
+@Table
 @Entity
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="order_id")
     private Integer orderId;
 
     @OneToOne
@@ -28,5 +27,6 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
     private Integer productQuantity;
 }

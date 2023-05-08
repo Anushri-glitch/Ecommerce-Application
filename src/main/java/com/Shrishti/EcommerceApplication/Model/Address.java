@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="addressTabl")
+@Table
 @Entity
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="address_id")
     private Integer addressId;
     private String addressName;
     private String landmark;

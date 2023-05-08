@@ -16,4 +16,13 @@ public class ProductService {
         productDao.saveAll(product);
         return "Product Created!!!";
     }
+
+    public List<Product> getAllProductsByCategory(String category) {
+        return productDao.findByCategory(category);
+    }
+
+    public String deleteById(Integer productId) {
+        productDao.deleteById(productId);
+        return "Product Deleted!!!";
+    }
 }

@@ -5,7 +5,7 @@ import com.Shrishti.EcommerceApplication.Dao.IOrderDao;
 import com.Shrishti.EcommerceApplication.Dao.IProductDao;
 import com.Shrishti.EcommerceApplication.Dao.UserDao;
 import com.Shrishti.EcommerceApplication.Model.Address;
-import com.Shrishti.EcommerceApplication.Model.Order;
+import com.Shrishti.EcommerceApplication.Model.Orders;
 import com.Shrishti.EcommerceApplication.Model.Product;
 import com.Shrishti.EcommerceApplication.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +28,12 @@ public class OrderService {
     @Autowired
     IAddressDao orderAddress;
 
-    public String createOrder(Order order, Integer userId, Integer productId, Integer addressId) {
+    public String createOrder(Orders order, Integer userId, Integer productId, Integer addressId) {
         String result = null;
 
         if(userDao.existsById(userId)){
-            List<Order> orderList = orderDao.findAll();
-            for(Order oldOrder : orderList){
+            List<Orders> orderList = orderDao.findAll();
+            for(Orders oldOrder : orderList){
                 if(oldOrder.getUser().getUserId().equals(userId) && oldOrder.getProduct().getProductId().equals(productId) && oldOrder.getAddress().getAddressId().equals(addressId)){
                     return " ";
                 }
@@ -53,5 +53,9 @@ public class OrderService {
             result = order.getUser().getUserName();
         }
         return result;
+    }
+
+    public Orders getOrderById(Integer orderId) {
+        return orderDao.findById(orderId).get();
     }
 }
